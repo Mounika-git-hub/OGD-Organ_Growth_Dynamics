@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 
 # USER INPUTS
-# Sample name (must match Excel)
+# Sample name 
 SAMPLE_ID = "Idisc001"
 
 # Input Z-stack (TIFF)
@@ -57,7 +57,7 @@ def normalize(slice_img):
     slice_img *= 255
     return slice_img.astype(np.uint8)
 
-# INITIALIZE VIDEO WRITER (3-CHANNEL!)
+# INITIALIZE VIDEO WRITER (3-CHANNEL)
 height, width = stack.shape[1], stack.shape[2]
 
 fourcc = cv2.VideoWriter_fourcc(*"mp4v")
@@ -74,7 +74,7 @@ video = cv2.VideoWriter(
 print("Converting slices to video...")
 for slice_img in tqdm(stack):
     gray = normalize(slice_img)
-    frame = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)  # REQUIRED
+    frame = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)  # REQUIRED for SAM2 and SAM3 models 
     video.write(frame)
 
 video.release()
