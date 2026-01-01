@@ -3,7 +3,7 @@ import tifffile as tiff
 from tqdm import tqdm
 import os
 
-# INPUT PATH (CHANGE THIS)
+# INPUT PATH 
 raw_tif_path = "Idisc001.tif"
 
 # OUTPUT PATH
@@ -17,7 +17,7 @@ print("Raw stack shape:", stack.shape)  # (Z, H, W)
 # NORMALIZATION FUNCTION
 def normalize_slice(img):
     img = img.astype(np.float32)
-    p1, p99 = np.percentile(img, (1, 99))  # robust fluorescence scaling
+    p1, p99 = np.percentile(img, (1, 99))  # for fluorescence scaling
     img = np.clip(img, p1, p99)
     img = (img - p1) / (p99 - p1 + 1e-6)
     img = (img * 255).astype(np.uint8)
