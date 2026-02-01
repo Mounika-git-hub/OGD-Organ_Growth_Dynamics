@@ -16,19 +16,17 @@ from transformers import CLIPSegProcessor, CLIPSegForImageSegmentation
 from PIL import Image
 
 
-# os.environ["http_proxy"]  = "http://245hsbd012%40ibab.ac.in:Mounik%409201@proxy.ibab.ac.in:3128"
-# os.environ["https_proxy"] = "http://245hsbd012%40ibab.ac.in:Mounik%409201@proxy.ibab.ac.in:3128"
+#os.environ["http_proxy"]  = "http://245hsbd012%40ibab.ac.in:Mounik%409201@proxy.ibab.ac.in:3128"
+#os.environ["https_proxy"] = "http://245hsbd012%40ibab.ac.in:Mounik%409201@proxy.ibab.ac.in:3128"
 
 # PATH SETUP
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 INPUT_TIF_DIR = (
-    "/home/ibab/Downloads/Deep_Learning_for_image_analysis/"
-    "Deep learning for image analysis-20250926T061103Z-1-001/"
-    "Deep learning for image analysis")
+    "/home/ibab/Desktop/OGD/microscopy_data/Deep_Learning_for_image_analysis/")
 OUTPUT_ROOT = os.path.join(BASE_DIR, "outputs")
 os.makedirs(OUTPUT_ROOT, exist_ok=True)
 
-NUM_SAMPLES = 5
+NUM_SAMPLES = 473
 FPS = 5
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -53,10 +51,7 @@ model.eval()
 print(f"CLIPSeg loaded on {DEVICE}\n")
 
 # COLLECT INPUT FILES
-tif_files = sorted(
-    f for f in os.listdir(INPUT_TIF_DIR)
-    if f.lower().endswith(".tif")
-)[:NUM_SAMPLES]
+tif_files = sorted(f for f in os.listdir(INPUT_TIF_DIR) if f.lower().endswith(".tif"))[:NUM_SAMPLES]
 
 print("Samples to process:")
 for f in tif_files:
