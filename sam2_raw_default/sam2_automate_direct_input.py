@@ -15,7 +15,7 @@ import torch
 from tqdm import tqdm
 from sam2.build_sam import build_sam2_video_predictor
 
-INPUT_TIF_DIR = "/path/to/tif_directory"
+INPUT_TIF_DIR = "/home/ibab/Desktop/OGD/microscopy_data/Deep_Learning_for_image_analysis"
 OUTPUT_ROOT = "outputs"
 NUM_SAMPLES = 5
 FPS = 5
